@@ -5,11 +5,11 @@
     
 
 Aloitus: klo 19:05. 
-Tehtävässä aiheutettaan erinäisiä ongelmia djangon tuotantoasennukseen, ja pyritään etsimään 
+Tehtävässä aiheutettaan erinäisiä ongelmia djangon tuotantoasennukseen ja pyritään etsimään niistä aiheutuvat oireet. Etsitään ongelmista aiheutuvat lokimerkinnät ja pyritään tulkitsemaan niitä. Lopulta korjataan aiheutettu onglema ja tarkistetaan, että ongelman aiheuttamat oireet ovat hävinneet. Tehtävä on suoritettu LinuxPalvelimet-h11-prod raportissa tehtyyn djangon tuotantoasennukseen.
 
 ## a)
 ### Aiheutetaan ongelma
-
+Kirjoitusvirhe Python-tiedostossa
 ### Oireet
 
 ### Lokimerkinnät
@@ -22,7 +22,7 @@ Tehtävässä aiheutettaan erinäisiä ongelmia djangon tuotantoasennukseen, ja 
 
 ## b)
 ### Aiheutetaan ongelma
-
+Django-projektikansio väärässä paikassa
 ### Oireet
 
 ### Lokimerkinnät
@@ -35,7 +35,7 @@ Tehtävässä aiheutettaan erinäisiä ongelmia djangon tuotantoasennukseen, ja 
 
 ## c)
 ### Aiheutetaan ongelma
-
+Projektikansiolla väärät oikeudet
 ### Oireet
 
 ### Lokimerkinnät
@@ -48,7 +48,7 @@ Tehtävässä aiheutettaan erinäisiä ongelmia djangon tuotantoasennukseen, ja 
 
 ## d)
 ### Aiheutetaan ongelma
-
+Kirjoitusvirhe Apachen asetustiedostossa
 ### Oireet
 
 ### Lokimerkinnät
@@ -61,7 +61,7 @@ Tehtävässä aiheutettaan erinäisiä ongelmia djangon tuotantoasennukseen, ja 
 
 ## e)
 ### Aiheutetaan ongelma
-
+Apachen WSGI-moduli puuttuu
 ### Oireet
 
 ### Lokimerkinnät
@@ -74,7 +74,7 @@ Tehtävässä aiheutettaan erinäisiä ongelmia djangon tuotantoasennukseen, ja 
 
 ## f)
 ### Aiheutetaan ongelma
-
+Väärät domain-nimet ALLOWED_HOSTS-kohdassa
 ### Oireet
 
 ### Lokimerkinnät
@@ -84,8 +84,6 @@ Tehtävässä aiheutettaan erinäisiä ongelmia djangon tuotantoasennukseen, ja 
 ### Korjataan ongelma
 
 ### Testataan, että oireet ovat kadonneet
-
-
 
 Lopetus: klo 
 
