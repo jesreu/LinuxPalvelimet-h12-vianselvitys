@@ -5,7 +5,7 @@
     
 
 Aloitus: klo 19:05. 
-Tehtävässä aiheutettaan erinäisiä ongelmia djangon tuotantoasennukseen ja pyritään etsimään niistä aiheutuvat oireet. Etsitään ongelmista aiheutuvat lokimerkinnät ja pyritään tulkitsemaan niitä. Lopulta korjataan aiheutettu onglema ja tarkistetaan, että ongelman aiheuttamat oireet ovat hävinneet. Tehtävä on suoritettu LinuxPalvelimet-h11-prod raportissa tehtyyn djangon tuotantoasennukseen.
+Tehtävässä aiheutettaan erinäisiä ongelmia djangon tuotantoasennukseen ja etsimään niistä aiheutuvat oireet. Etsitään ongelmista aiheutuvat lokimerkinnät ja tulkitaan niitä. Korjataan aiheutettu onglema ja tarkistetaan, että oireet ovat hävinneet. Tehtävä on suoritettu LinuxPalvelimet-h11-prod raportissa tehtyyn djangon tuotantoasennukseen.
 
 ## a)
 ### Aiheutetaan ongelma
