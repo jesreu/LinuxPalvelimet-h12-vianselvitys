@@ -9,8 +9,24 @@ Tehtävässä aiheutettaan erinäisiä ongelmia djangon tuotantoasennukseen ja e
 
 ## a)
 ### Aiheutetaan ongelma
-Kirjoitusvirhe Python-tiedostossa
+Kirjoitusvirhe Python-tiedostossa. Käydään muokkaamassa manage.py tiedostoa.
+
+    cd publicwsgi
+    source env/bin/activate
+    cd jepi
+    micro manage.py
+    
+Poistetaan import sys riviltä 3.
+
+![python vika](https://user-images.githubusercontent.com/112503770/222976762-8b7f839f-6c05-400f-9e23-f9669f366cf3.png)
+
 ### Oireet
+Ylempänä olevassa kuvassa näkyy, että manage.py on djangon käyttämä komentorivi työkalu, joten oletan, että sitä muokkaamalla ei olisi vaikutuksia sivuston toimintaan. Oletan, että nyt emme voi enää ajaa `./manage.py` komentoja. Kokeillaan ajaa ./manage.py makemigrations.
+
+    ./manage.py makemigrations
+    
+![image](https://user-images.githubusercontent.com/112503770/222977070-2eaab3b7-f1a3-421f-a985-07cefb61fbde.png)
+
 
 ### Lokimerkinnät
 
