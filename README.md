@@ -25,16 +25,29 @@ Ylempänä olevassa kuvassa näkyy, että manage.py on djangon käyttämä komen
 
     ./manage.py makemigrations
     
-![image](https://user-images.githubusercontent.com/112503770/222977070-2eaab3b7-f1a3-421f-a985-07cefb61fbde.png)
+![image](https://user-images.githubusercontent.com/112503770/222977101-fc461b44-d61d-4350-b0a7-6543b19f1b9a.png)
 
+NameError näyttäisi kertovan, siitä että nimelle sys ei voida antaa arvoa. 
 
 ### Lokimerkinnät
-
+-- en löytänyt lokimerkintöjä virheestä. 
 ### Analysoidaan lokeja
-
+-- ei lokimerkintöjä
 ### Korjataan ongelma
+Käydään korjaamassa manage.py tiedosto
+
+    micro manage.py
+
+![image](https://user-images.githubusercontent.com/112503770/222978178-af89777a-41c7-44c2-b31c-214af60338d2.png)
 
 ### Testataan, että oireet ovat kadonneet
+Nyt jos ajamme komennon:
+
+    ./manage.py makemigrations
+
+Saamme tulokseksi:
+
+![image](https://user-images.githubusercontent.com/112503770/222978240-fbe3b5a8-d42a-4958-8cc5-7290ba52198b.png)
 
 ## b)
 ### Aiheutetaan ongelma
