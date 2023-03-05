@@ -30,9 +30,9 @@ Ylempänä olevassa kuvassa näkyy, että manage.py on djangon käyttämä komen
 NameError näyttäisi kertovan, siitä että nimelle sys ei voida antaa arvoa. 
 
 ### Lokimerkinnät
--- en löytänyt lokimerkintöjä virheestä. 
+En löytänyt lokimerkintöjä virheestä. 
 ### Analysoidaan lokeja
--- ei lokimerkintöjä
+Ei lokimerkintöjä.
 ### Korjataan ongelma
 Käydään korjaamassa manage.py tiedosto
 
@@ -49,6 +49,7 @@ Saamme tulokseksi:
 
 ![image](https://user-images.githubusercontent.com/112503770/222978240-fbe3b5a8-d42a-4958-8cc5-7290ba52198b.png)
 
+klo 20:20
 ## b)
 ### Aiheutetaan ongelma
 Django-projektikansio väärässä paikassa
