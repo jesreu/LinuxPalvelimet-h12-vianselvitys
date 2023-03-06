@@ -68,11 +68,13 @@ Nyt huomaan, että en saa apachen lokeja auki.
 
 Kokeilin ajaa komentoa ja muita vaihtoehtoisia `cat, tail, head` useampaan otteeseen, mutta en saanut mitään ulos. 
 
-Etsin verkosta mahdollisia ohjeita 30-40 minuuttia, mutta en löytänyt mitään järkevää. Sattumalta tajusin ajaa `sudo systemctl restart apache2` komennon, joka yllättäen korjasi ongelman.
+Etsin verkosta mahdollisia ohjeita 30 - 40 minuuttia, mutta en löytänyt mitään järkevää. Sattumalta tajusin ajaa `sudo systemctl restart apache2` komennon, joka yllättäen korjasi ongelman.
 
 ![image](https://user-images.githubusercontent.com/112503770/223034546-dc13ad0e-715f-4d29-ba16-0b54cbf6071d.png)
 
 ### Analysoidaan lokeja
+Ylempänä olevassa lokikuvassa on aiheutettu tilanne, jossa yritin avata `http:/localhost/`. `Lokimerkinnän ensimmäinen kohta on viestin päivämäärä ja kellonaika. Seuraavana on viestin tuottanut moduuli (tässä tapauksessa core) ja viestin vakavuusaste. Tämän jälkeen ilmoitetaan prosessin prosessitunnus ja säikeen tunnus. Seuraavaksi on pyynnön ip osoite. Lopuksi on yksityiskohtainen virheilmoitus, joka tässä tapauksessa osoittaa, että tiedostoa, jota ei ollut olemassa, oli pyydetty` -(apache)
+
 
 ### Korjataan ongelma
 
@@ -130,10 +132,10 @@ Väärät domain-nimet ALLOWED_HOSTS-kohdassa
 
 ### Testataan, että oireet ovat kadonneet
 
-Lopetus: klo 
+Käytetty aika: 
 
 ## Lähteet:
 
     https://terokarvinen.com/2023/linux-palvelimet-2023-alkukevat/
     https://terokarvinen.com/2022/deploy-django/
-    
+    https://httpd.apache.org/docs/2.4/logs.html
