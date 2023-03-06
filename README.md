@@ -75,7 +75,7 @@ Etsin verkosta mahdollisia ohjeita 30 - 40 minuuttia, mutta en löytänyt mitä�
 ![image](https://user-images.githubusercontent.com/112503770/223034546-dc13ad0e-715f-4d29-ba16-0b54cbf6071d.png)
 
 ### Analysoidaan lokeja
-Ylempänä olevassa lokikuvassa on aiheutettu tilanne, jossa yritin avata `http:/localhost/`. Lokimerkinnän ensimmäinen kohta on viestin päivämäärä ja kellonaika. Seuraavana on viestin tuottanut moduuli (tässä tapauksessa authz_core) ja viestin vakavuusaste (error). Tämän jälkeen ilmoitetaan prosessin prosessitunnus ja säikeen tunnus. Seuraavaksi on pyynnön ip osoite. Lopuksi on yksityiskohtainen virheilmoitus ja sen virhekoodi(AH01630), joka tässä tapauksessa osoittaa, että palvelimen asetukset estävät yhteyden sijainissa /home/jesser/publicwsgi/jepi.
+Ylempänä olevassa lokikuvassa on aiheutettu tilanne, jossa yritin avata `http:/localhost/`. Lokimerkinnän ensimmäinen kohta on viestin päivämäärä ja kellonaika. Seuraavana on viestin tuottanut moduuli (tässä tapauksessa authz_core) ja viestin vakavuusaste (error). Tämän jälkeen ilmoitetaan prosessin prosessitunnus ja säikeen tunnus. Seuraavaksi on pyynnön ip osoite. Lopuksi on yksityiskohtainen virheilmoitus ja sen virhekoodi(AH00035), joka tässä tapauksessa osoittaa, että palvelimen asetukset estävät yhteyden sijainissa /home/jesser/publicwsgi/jepi.
 
 Toisaalta voidaan päätellä, että loki viittaa .conf tiedoston määritelmiin joissa on eritelty projektin sijainti.
 
@@ -141,6 +141,9 @@ Lisätään oikeudet takaisin komennolla `chmod ugo+rwx jepi/`, kuten man sivuil
 
 Käynnistetään myös apache uudelleen. `sudo systemctl restart apache2`
 ### Testataan, että oireet ovat kadonneet
+Nyt siirtymällä selaimella osoitteeseen `http:/localhost/admin/` huomaamme, että sivu toimii taas.
+
+![image](https://user-images.githubusercontent.com/112503770/223040211-4b03c9b8-4843-400a-bb50-7740669cd482.png)
 
 ## d)
 ### Aiheutetaan ongelma
