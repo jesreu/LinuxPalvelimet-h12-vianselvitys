@@ -200,27 +200,74 @@ Apache selkeästi lakkasi toimimasta komennon jälkeen.
 ![image](https://user-images.githubusercontent.com/112503770/223051093-80729988-0d0d-4164-a274-d0b5a681b14a.png)
 
 ### Lokimerkinnät
-Ajoin ensimmäisenä komennon `/sbin/apache2ctl configtest` josta sain
-### Analysoidaan lokeja
+Ajoin ensimmäisenä komennon `/sbin/apache2ctl configtest` josta sain:
+
+![image](https://user-images.githubusercontent.com/112503770/223054750-0b770504-5f6d-48f5-9d2b-e5a344d9d083.png)
+
+Virheessä viitataan .conf tiedoston riviin 13 joten käydään vilkaisemassa mitä siellä on. 
+
+![image](https://user-images.githubusercontent.com/112503770/223054988-7b1437ad-912e-4f90-845e-83bc433cbc0b.png)
+
+Virhe siis aiheutuu siitä, että apache ei tiedä mikä wsgi on sen poistamisen jälkeen.
+
+Vilkaistaan myös error lokia.
+
+![image](https://user-images.githubusercontent.com/112503770/223055312-27988822-94b4-40cc-9e7b-cc7ace9a2a34.png)
+
+Virhe on pitkälti sama kuin d) kohdassa, eli apache kohtasi ongelman ja sammutti itsensä.
 
 ### Korjataan ongelma
+Ajetaan wsgi asennuskomento ja käynnistetään apache uudelleen.
+
+    sudo apt-get -y install libapache2-mod-wsgi-py3
+    sudo systemctl restart apache2
 
 ### Testataan, että oireet ovat kadonneet
+Nyt siirtymällä selaimella osoitteeseen `http:/localhost/admin/` huomaamme, että sivu toimii taas.
+
+![image](https://user-images.githubusercontent.com/112503770/223040211-4b03c9b8-4843-400a-bb50-7740669cd482.png)
 
 ## f)
 ### Aiheutetaan ongelma
-Väärät domain-nimet ALLOWED_HOSTS-kohdassa
+Väärät domain-nimet ALLOWED_HOSTS-kohdassa. Muokataan settings.py tiedostoa.
+
+    cd jepi/jepi/
+    micro settings.py
+    
+![image](https://user-images.githubusercontent.com/112503770/223056593-49abdc5a-1f4f-4d7f-b825-1d07e6912242.png)
+
+Poistin localhost merkinnän allowed hosts osiosta.
 ### Oireet
+Nyt kun navigoimme osoitteeseen `http:/localhost/admin/` tai `http:/localhost/` huomaamme, että saamme 400 bad request vastauksen.
+
+![image](https://user-images.githubusercontent.com/112503770/223057208-68abd652-23af-4a24-8aa5-57cc98efe959.png)
 
 ### Lokimerkinnät
+Ajoin ensimmäisenä komennon `/sbin/apache2ctl configtest`, joka ei antanut suoraan vastauksia.
 
-### Analysoidaan lokeja
+Seuraavana kokeilin error lokia. `sudo tail apache2/error.log`, joka ei antanut suoraan vastauksia.
 
+Koska kyseessä ei ole sinäänsä virhe kokeilen access lokia. `sudo tail apache2/access.log`
+Saan taas samaa ongelmaa, kuin kohdassa b) eli en saa access.log tiedostoa auki. Toisaalta ehkä kyseessä on eri ongelma tällä kertaa koska error.log toimii normaalisti.
+
+En löytänyt loki merkintöjä ongelmasta.
 ### Korjataan ongelma
+Käydään korjaamassa settings.py tiedosto
+
+    cd jepi/jepi/
+    micro settings.py
+
+![image](https://user-images.githubusercontent.com/112503770/223061311-e88d2ab2-fe55-4bc3-af22-0cdb64a4b001.png)
+
+käynnistetään apache uudelleen. `sudo systemctl restart apache2`
 
 ### Testataan, että oireet ovat kadonneet
 
-Käytetty aika: 
+Nyt siirtymällä selaimella osoitteeseen `http:/localhost/admin/` huomaamme, että sivu toimii taas.
+
+![image](https://user-images.githubusercontent.com/112503770/223040211-4b03c9b8-4843-400a-bb50-7740669cd482.png)
+
+Käytetty aika: 5h
 
 ## Lähteet:
 
