@@ -106,21 +106,40 @@ Projektikansiolla väärät oikeudet. Oikeuksien muuttaminen onnistuu chmod kome
 
 ![image](https://user-images.githubusercontent.com/112503770/223041717-8887507b-d097-4a68-b042-0c327c1b8991.png)
 
+![image](https://user-images.githubusercontent.com/112503770/223042087-d3d232e3-14f9-493c-a67e-085e8c89183a.png)
+
 ![image](https://user-images.githubusercontent.com/112503770/223041820-165729e0-7b8f-4b78-a2f1-93a0cc0a8d86.png)
 
 ![image](https://user-images.githubusercontent.com/112503770/223041882-fab85840-9f99-476d-ba7b-58e6a8fa2c28.png)
 
 ![image](https://user-images.githubusercontent.com/112503770/223041956-9a4aab98-504e-4c35-b8aa-eeef172059d5.png)
 
+Kurssin sivuilla on tarjottuna valmiina komennot `chmod ugo-rwx teroco/'` ja `chmod u+rx teroco/`. Man sivujen perusteella ensimmäinen komento poistaa oikeuksia ja toinen lisää niitä.
+
+Ajetaan siis komento `chmod ugo-rwx jepi/` jolla pitäisi poistua oikeudet kansioon.
+
+![image](https://user-images.githubusercontent.com/112503770/223043133-75a7ebe9-eb8b-4014-a42d-f34e9c31ca9a.png)
 
 ### Oireet
+Huomaamme jos yritämme navigoida `http:/localhost/admin/`, että saamme 403-forbidden virhekoodin. 
+
+![image](https://user-images.githubusercontent.com/112503770/223028456-f41e85cd-5a84-44fa-b539-108ee72d7d5a.png)
 
 ### Lokimerkinnät
+Katsotaan apachen virhe lokeja. `sudo tail apache2/error.log`
 
-### Analysoidaan lokeja
+![image](https://user-images.githubusercontent.com/112503770/223043514-9a96b53c-bb7d-4a5d-a9a1-c557d8a46975.png)
+
+Lokimerkinnän ensimmäinen kohta on viestin päivämäärä ja kellonaika. Seuraavana on viestin tuottanut moduuli (tässä tapauksessa core) ja viestin vakavuusaste (error). Tämän jälkeen ilmoitetaan prosessin prosessitunnus (4863) ja säikeen tunnus (1399427935123704). Välissä on virheilmoitus ((13)Permission denied) seuraavaksi on pyynnön ip osoite. Lopuksi on yksityiskohtainen virheilmoitus ja sen virhekoodi(AH01630), joka tässä tapauksessa osoittaa, että jollain tiedostopolun (/home/jesser/publicwsgi/jepi/jepi) osuudella on puuttuvat oikeudet.
+
+Ajoin myös `/sbin/apache2ctl configtest` ja `sudo systemctl apache2 status`, mutta ne eivät antaneet mitään täydentävää.
 
 ### Korjataan ongelma
+Lisätään oikeudet takaisin komennolla `chmod ugo+rwx jepi/`, kuten man sivuilla kerrottiin, että + lisää ja - poistaa.
 
+![image](https://user-images.githubusercontent.com/112503770/223046749-fe16300a-20fc-4ccf-bb54-6eeb10bc39e3.png)
+
+Käynnistetään myös apache uudelleen. `sudo systemctl restart apache2`
 ### Testataan, että oireet ovat kadonneet
 
 ## d)
