@@ -147,16 +147,47 @@ Nyt siirtymällä selaimella osoitteeseen `http:/localhost/admin/` huomaamme, et
 
 ## d)
 ### Aiheutetaan ongelma
-Kirjoitusvirhe Apachen asetustiedostossa
+Kirjoitusvirhe Apachen asetustiedostossa. Käydään siis muokkaamassa projektin .conf tiedostoa.
+
+    sudoedit /etc/apache2/sites-available/jepico.conf
+    
+![image](https://user-images.githubusercontent.com/112503770/223050393-76c2f27a-c3fc-43fc-ae3e-8e120aff9b88.png)
+
+Poistin riviltä 11, directoryn sulkevan > merkin. 
 ### Oireet
+Kävin kokeilemassa, en huomannut mitään ongelmia, joten varmuuden vuoksi ajoin `sudo systemctl restart apache2`. Apache selkeästi lakkasi toimimasta komennon jälkeen.
+
+![image](https://user-images.githubusercontent.com/112503770/223051164-4d7bbd4f-1177-48a5-8316-c72f94d81e83.png)
+
+![image](https://user-images.githubusercontent.com/112503770/223051093-80729988-0d0d-4164-a274-d0b5a681b14a.png)
 
 ### Lokimerkinnät
+Ajoin ensimmäisenä `sudo systemctl apache2 status`, josta hieman navigoimalla löytyi suoraan tieto, että puuttuvasta > merkistä.
 
-### Analysoidaan lokeja
+![image](https://user-images.githubusercontent.com/112503770/223051433-d8467d0f-540a-4956-8bd2-6e89208b8b5d.png)
+
+Saman tiedon saa myös ajamalla komennon `/sbin/apache2ctl configtest`
+
+![image](https://user-images.githubusercontent.com/112503770/223051730-f87e232f-7bef-440f-a4f3-6c93b828d2d2.png)
+
+Katsotaan vielä mitä virhe lokeista löytyy.
+
+![image](https://user-images.githubusercontent.com/112503770/223052135-872de3a3-417b-4490-9bd1-205f8a6a876c.png)
+
+Lokimerkinnän ensimmäinen kohta on viestin päivämäärä ja kellonaika. Seuraavana on viestin tuottanut moduuli (tässä tapauksessa mpm_event) ja viestin vakavuusaste (notice). Tämän jälkeen ilmoitetaan prosessin prosessitunnus (5245) ja säikeen tunnus (140193214815552). Lopuksi on yksityiskohtainen virheilmoitus ja sen virhekoodi(AH00491), joka tässä tapauksessa osoittaa, että apache koki jonkin virheen ja lopetti toiminnan. Mikä vastaa oireet osiossa nähtyä toimintaa.
 
 ### Korjataan ongelma
+Lisätään puutuva > tagi takaisin ja käynnistetään apache uudelleen.
+
+    sudoedit /etc/apache2/sites-available/jepico.conf
+    sudo systemctl restart apache2
+
+![image](https://user-images.githubusercontent.com/112503770/223052915-86789af6-6c28-4061-b9e5-34b15438e4c6.png)
 
 ### Testataan, että oireet ovat kadonneet
+Nyt siirtymällä selaimella osoitteeseen `http:/localhost/admin/` huomaamme, että sivu toimii taas.
+
+![image](https://user-images.githubusercontent.com/112503770/223040211-4b03c9b8-4843-400a-bb50-7740669cd482.png)
 
 ## e)
 ### Aiheutetaan ongelma
