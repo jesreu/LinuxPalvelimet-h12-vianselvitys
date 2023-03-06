@@ -54,6 +54,8 @@ klo 20:20
 ### Aiheutetaan ongelma
 Django-projektikansio väärässä paikassa. Siirretään projektikansio eri paikkaan. Siirrän projektikansion jepi kansioon jepico.
 
+    mv jepi jepico
+
 ![siirretty rojekti](https://user-images.githubusercontent.com/112503770/223028316-aaa0b5ed-7b7b-4596-9500-d514aa0e53a8.png)
 
 ### Oireet
@@ -73,16 +75,44 @@ Etsin verkosta mahdollisia ohjeita 30 - 40 minuuttia, mutta en löytänyt mitä�
 ![image](https://user-images.githubusercontent.com/112503770/223034546-dc13ad0e-715f-4d29-ba16-0b54cbf6071d.png)
 
 ### Analysoidaan lokeja
-Ylempänä olevassa lokikuvassa on aiheutettu tilanne, jossa yritin avata `http:/localhost/`. `Lokimerkinnän ensimmäinen kohta on viestin päivämäärä ja kellonaika. Seuraavana on viestin tuottanut moduuli (tässä tapauksessa core) ja viestin vakavuusaste. Tämän jälkeen ilmoitetaan prosessin prosessitunnus ja säikeen tunnus. Seuraavaksi on pyynnön ip osoite. Lopuksi on yksityiskohtainen virheilmoitus, joka tässä tapauksessa osoittaa, että tiedostoa, jota ei ollut olemassa, oli pyydetty` -(apache)
+Ylempänä olevassa lokikuvassa on aiheutettu tilanne, jossa yritin avata `http:/localhost/`. Lokimerkinnän ensimmäinen kohta on viestin päivämäärä ja kellonaika. Seuraavana on viestin tuottanut moduuli (tässä tapauksessa authz_core) ja viestin vakavuusaste (error). Tämän jälkeen ilmoitetaan prosessin prosessitunnus ja säikeen tunnus. Seuraavaksi on pyynnön ip osoite. Lopuksi on yksityiskohtainen virheilmoitus ja sen virhekoodi(AH01630), joka tässä tapauksessa osoittaa, että palvelimen asetukset estävät yhteyden sijainissa /home/jesser/publicwsgi/jepi.
 
+Toisaalta voidaan päätellä, että loki viittaa .conf tiedoston määritelmiin joissa on eritelty projektin sijainti.
 
+![image](https://user-images.githubusercontent.com/112503770/223038725-71b8543d-787f-4d5a-9636-bcca86880326.png)
+
+Kokeilin ajaa myös configtest, jos se antaisi mitään täydentävää.
+
+![image](https://user-images.githubusercontent.com/112503770/223039258-03816cf5-3012-4915-88d0-8a6fe2d6b68f.png)
+
+KOska virhe ei ole itse apachen puolella niin configtest ei kerro, mitään lisää.
 ### Korjataan ongelma
+Siirretään projekti takaisin oikeaan kansioon.
 
+    mv jepi ..
+    
+Lokiongelmista oppineena käynnistetään vielä apache uudelleen.
+
+    sudo systemctl restart apache2
+    
 ### Testataan, että oireet ovat kadonneet
+Nyt siirtymällä selaimella osoitteeseen `http:/localhost/admin/` huomaamme, että sivu toimii taas.
+
+![image](https://user-images.githubusercontent.com/112503770/223040211-4b03c9b8-4843-400a-bb50-7740669cd482.png)
 
 ## c)
 ### Aiheutetaan ongelma
-Projektikansiolla väärät oikeudet
+Projektikansiolla väärät oikeudet. Oikeuksien muuttaminen onnistuu chmod komennolla, mutta koska komento ei ole tuttu ajetaan `man chmod`.
+
+![image](https://user-images.githubusercontent.com/112503770/223041717-8887507b-d097-4a68-b042-0c327c1b8991.png)
+
+![image](https://user-images.githubusercontent.com/112503770/223041820-165729e0-7b8f-4b78-a2f1-93a0cc0a8d86.png)
+
+![image](https://user-images.githubusercontent.com/112503770/223041882-fab85840-9f99-476d-ba7b-58e6a8fa2c28.png)
+
+![image](https://user-images.githubusercontent.com/112503770/223041956-9a4aab98-504e-4c35-b8aa-eeef172059d5.png)
+
+
 ### Oireet
 
 ### Lokimerkinnät
