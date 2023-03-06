@@ -30,7 +30,7 @@ Ylempänä olevassa kuvassa näkyy, että manage.py on djangon käyttämä komen
 NameError näyttäisi kertovan, siitä että nimelle sys ei voida antaa arvoa. 
 
 ### Lokimerkinnät
-En löytänyt lokimerkintöjä virheestä. 
+En löytänyt lokimerkintöjä virheestä. Oletan, että virhe aiheutti vain djangon sisäisiä ongelmia niin siitä ei voi saada virheilmoituksia esimerkiksi apachen lokeihin.
 ### Analysoidaan lokeja
 Ei lokimerkintöjä.
 ### Korjataan ongelma
@@ -52,10 +52,25 @@ Saamme tulokseksi:
 klo 20:20
 ## b)
 ### Aiheutetaan ongelma
-Django-projektikansio väärässä paikassa
+Django-projektikansio väärässä paikassa. Siirretään projektikansio eri paikkaan. Siirrän projektikansion jepi kansioon jepico.
+
+![siirretty rojekti](https://user-images.githubusercontent.com/112503770/223028316-aaa0b5ed-7b7b-4596-9500-d514aa0e53a8.png)
+
 ### Oireet
+Huomaamme jos yritämme navigoida `http:/localhost/admin/`, että saamme 403-forbidden virhekoodin. 
+
+![image](https://user-images.githubusercontent.com/112503770/223028456-f41e85cd-5a84-44fa-b539-108ee72d7d5a.png)
 
 ### Lokimerkinnät
+Nyt huomaan, että en saa apachen lokeja auki. 
+
+![image](https://user-images.githubusercontent.com/112503770/223032231-8140df07-c69b-4f29-80c0-7f4b8d264c1e.png)
+
+Kokeilin ajaa komentoa ja muita vaihtoehtoisia `cat, tail, head` useampaan otteeseen, mutta en saanut mitään ulos. 
+
+Etsin verkosta mahdollisia ohjeita 30-40 minuuttia, mutta en löytänyt mitään järkevää. Sattumalta tajusin ajaa `sudo systemctl restart apache2` komennon, joka yllättäen korjasi ongelman.
+
+![image](https://user-images.githubusercontent.com/112503770/223034546-dc13ad0e-715f-4d29-ba16-0b54cbf6071d.png)
 
 ### Analysoidaan lokeja
 
